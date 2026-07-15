@@ -21,17 +21,21 @@ import numpy as np
 
 if __name__ == "__main__":
     rospy.init_node("odom_pub")
+    
+    # --- 修改这里：优先读取参数，如果没有则默认为 dingo ---
+    robot_name = "turtlebot3"
     base_frame = rospy.get_param("~base_frame", "base_link")
-    rate = rospy.Rate(50)  # ROS Rate at 50Hz
+    # --------------------------------------------------
+
+    rate = rospy.Rate(50)
     pub = rospy.Publisher("/odom", Odometry, queue_size=10)
     rospy.wait_for_service("/gazebo/get_model_state")
     caller = rospy.ServiceProxy("/gazebo/get_model_state", GetModelState)
     br = tf2_ros.TransformBroadcaster()
 
     while not rospy.is_shutdown():
-        # First param is the name of the robot in Gazebo
-        # maybe we should change this to something more general like robot
-        resp = caller("turtlebot3", "world")
+        # --- 修改这里：使用变量 robot_name 代替硬编码的 "ridgeback" ---
+        resp = caller(robot_name, "world")
         now = rospy.get_rostime()
         msg = Odometry()
         t = TransformStamped()

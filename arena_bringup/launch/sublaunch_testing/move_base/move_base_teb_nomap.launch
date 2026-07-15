@@ -13,6 +13,8 @@
   <arg name="penalty_epsilon" default="0.1" />
   <arg name="weight_kinematics_forward_drive" default="500.0" />
   <arg name="teb_profile_file" default="" />
+  <arg name="global_costmap_size" default="40.0" />
+  <arg name="global_costmap_resolution" default="0.1" />
   <!-- <arg name="speed" default="0.22"/> -->
 
   <!-- move_base -->
@@ -29,6 +31,16 @@
     <rosparam file="$(find conventional)/config/$(arg model)/teb_local_planner_params_nomap.yaml" command="load" />
     <!-- Optional mode-specific overlay. Explicit launch arguments below remain the final overrides. -->
     <rosparam if="$(eval arg('teb_profile_file') != '')" file="$(arg teb_profile_file)" command="load" />
+    <!--
+      Keep the rolling global planner window independent from the high-detail
+      local costmap.  A coarser, bounded global grid allows distant GPS goals
+      without multiplying local obstacle-avoidance work.
+    -->
+    <param name="global_costmap/width" type="double" value="$(arg global_costmap_size)" />
+    <param name="global_costmap/height" type="double" value="$(arg global_costmap_size)" />
+    <param name="global_costmap/resolution" type="double" value="$(arg global_costmap_resolution)" />
+    <param name="global_costmap/origin_x" type="double" value="$(eval -float(arg('global_costmap_size')) / 2.0)" />
+    <param name="global_costmap/origin_y" type="double" value="$(eval -float(arg('global_costmap_size')) / 2.0)" />
     <param name="TebLocalPlannerROS/odom_topic" value="$(arg odom_topic)" />
     <param name="TebLocalPlannerROS/xy_goal_tolerance" type="double" value="$(arg xy_goal_tolerance)" />
     <param name="TebLocalPlannerROS/yaw_goal_tolerance" type="double" value="$(arg yaw_goal_tolerance)" />

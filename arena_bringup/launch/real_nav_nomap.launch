@@ -14,6 +14,8 @@
   <arg name="penalty_epsilon" default="$(eval 0.03 if arg('localization_source') == 'gps' else 0.1)"/>
   <arg name="weight_kinematics_forward_drive" default="$(eval 20.0 if arg('localization_source') == 'gps' else 500.0)"/>
   <arg name="teb_profile_file" default=""/>
+  <arg name="global_costmap_size" default="40.0"/>
+  <arg name="global_costmap_resolution" default="0.1"/>
   
   <!-- <arg name="map_file" default="/home/robot/arena_ws/src/arena-rosnav-3D/simulator_setup/maps/small_warehouse/map.yaml"/>
 -->  
@@ -40,6 +42,8 @@
     <arg name="penalty_epsilon" value="$(arg penalty_epsilon)"/>
     <arg name="weight_kinematics_forward_drive" value="$(arg weight_kinematics_forward_drive)"/>
     <arg name="teb_profile_file" value="$(arg teb_profile_file)"/>
+    <arg name="global_costmap_size" value="$(arg global_costmap_size)"/>
+    <arg name="global_costmap_resolution" value="$(arg global_costmap_resolution)"/>
   </include>
 
   <node pkg="eval" name="viz_path" type="viz_path.py" />

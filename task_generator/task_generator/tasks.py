@@ -138,7 +138,7 @@ class ManualTask(ABSTask):
     def reset(self):
         while True:
             with self._map_lock:
-                self.obstacle_manager.remove_all_obstacles(N_OBS["static"])
+                self.obstacle_manager.remove_all_obstacles()
                 start_pos = self.robot_manager.set_start_pos_random()
                 self.obstacle_manager.register_random_dynamic_obstacles(
                     self.num_of_actors,
