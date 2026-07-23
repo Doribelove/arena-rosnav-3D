@@ -3,6 +3,8 @@
   <arg name="model" default="dingo"/>
   <arg name="local_planner" default="teb"/>
   <arg name="localization_source" default="fast_lio"/>
+  <arg name="start_rviz" default="true"/>
+  <arg name="planner_frequency" default="1.0"/>
   <arg name="odom_topic" default="$(eval '/gps/odom' if arg('localization_source') == 'gps' else '/Odometry')"/>
   <arg name="cmd_vel_topic" default="/cmd_vel"/>
   <arg name="xy_goal_tolerance" default="$(eval 0.5 if arg('localization_source') == 'gps' else 0.5)"/>
@@ -40,9 +42,14 @@
     <arg name="penalty_epsilon" value="$(arg penalty_epsilon)"/>
     <arg name="weight_kinematics_forward_drive" value="$(arg weight_kinematics_forward_drive)"/>
     <arg name="teb_profile_file" value="$(arg teb_profile_file)"/>
+    <arg name="planner_frequency" value="$(arg planner_frequency)"/>
   </include>
 
   <node pkg="eval" name="viz_path" type="viz_path.py" />
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find arena_bringup)/rviz/nav_LP.rviz"/>
+  <node if="$(arg start_rviz)"
+        name="rviz"
+        pkg="rviz"
+        type="rviz"
+        args="-d $(find arena_bringup)/rviz/nav_LP.rviz"/>
 </launch>

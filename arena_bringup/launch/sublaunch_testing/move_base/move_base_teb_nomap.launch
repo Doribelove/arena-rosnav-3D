@@ -13,6 +13,7 @@
   <arg name="penalty_epsilon" default="0.1" />
   <arg name="weight_kinematics_forward_drive" default="500.0" />
   <arg name="teb_profile_file" default="" />
+  <arg name="planner_frequency" default="1.0" />
   <!-- <arg name="speed" default="0.22"/> -->
 
   <!-- move_base -->
@@ -46,7 +47,7 @@
     <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
     <param name="controller_frequency" value="10.0" />
     <param name="controller_patience" value="10.0" />
-    <param name="planner_frequency" value="1.0" />
+    <param name="planner_frequency" value="$(arg planner_frequency)" />
     
 
   </node>
