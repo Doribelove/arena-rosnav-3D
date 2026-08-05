@@ -17,7 +17,7 @@
   <arg name="weight_kinematics_forward_drive" default="$(eval 20.0 if arg('localization_source') == 'gps' else 500.0)"/>
   <arg name="teb_profile_file" default=""/>
   
-  <!-- <arg name="map_file" default="/home/robot/arena_ws/src/arena-rosnav-3D/simulator_setup/maps/small_warehouse/map.yaml"/>
+  <!-- <arg name="map_file" default="/home/slam/arena_ws/src/arena-rosnav-3D/simulator_setup/maps/small_warehouse/map.yaml"/>
 -->  
   
   <param name="use_sim_time" value="false"/>

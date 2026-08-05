@@ -21,7 +21,7 @@ TEST_F(RayCastTest, TraceTest) {
 
   // Set up the raycast with a very simple map
   cv::Mat mat = cv::Mat::zeros(20, 20, CV_8UC1); 
-  cv::rectangle( mat, cv::Point( 10, 0 ), cv::Point( 20, 20), 255, CV_FILLED);
+  cv::rectangle( mat, cv::Point( 10, 0 ), cv::Point( 20, 20), 255, cv::FILLED);
   rc.SetMap(mat, 1.0, 0, 0);
 
   // Test tracing from empty space into wall
@@ -44,8 +44,8 @@ TEST_F(RayCastTest, ScanTest) {
 
   // Set up the raycast with a very simple map
   cv::Mat mat = cv::Mat::zeros(20, 20, CV_8UC1); 
-  cv::rectangle( mat, cv::Point( 15, 0 ), cv::Point( 20, 20), 255, CV_FILLED);
-  cv::rectangle( mat, cv::Point( 0, 17 ), cv::Point( 20, 20), 255, CV_FILLED);
+  cv::rectangle( mat, cv::Point( 15, 0 ), cv::Point( 20, 20), 255, cv::FILLED);
+  cv::rectangle( mat, cv::Point( 0, 17 ), cv::Point( 20, 20), 255, cv::FILLED);
   rc.SetMap(mat, 2.0, 0, 0);  // 2.0m per pixel
 
   // Test tracing from empty space into wall
