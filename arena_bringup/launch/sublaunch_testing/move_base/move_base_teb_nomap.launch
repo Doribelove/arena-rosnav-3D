@@ -3,7 +3,7 @@
   <!-- Arguments -->
   <arg name="model" default="turtlebot3_burger"/>
   <arg name="cmd_vel_topic" default="/cmd_vel" />
-  <arg name="odom_topic" default="/Odometry" />
+  <arg name="odom_topic" default="/odom" />
   <arg name="xy_goal_tolerance" default="0.5" />
   <arg name="yaw_goal_tolerance" default="0.3" />
   <arg name="max_vel_x" default="1.2" />

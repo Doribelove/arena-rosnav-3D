@@ -1,5 +1,6 @@
 TebLocalPlannerROS:
-  odom_topic: /Odometry
+  # Measured chassis twist; localization pose is obtained independently via TF.
+  odom_topic: /odom
   map_frame: camera_init
   global_plan_overwrite_orientation: True
   allow_init_with_backwards_motion: False
@@ -25,6 +26,9 @@ TebLocalPlannerROS:
   # M2 driver subscribes /cmd_vel as Twist and converts angular.z velocity to steering.
   # Keep this false so TEB publishes rotational velocity, not steering angle.
   cmd_angle_instead_rotvel: False
+  # Preserve omega/v when limiting speed, including FAST_LIO navigation where
+  # no GPS profile overlay is loaded. Independent clipping changes curvature.
+  use_proportional_saturation: True
   
   footprint_model:
     type: "polygon"
@@ -44,7 +48,8 @@ TebLocalPlannerROS:
   min_obstacle_dist: 0.3 # Keep extra clearance between the footprint and obstacles.
   inflation_dist: 0.6
   include_costmap_obstacles: True
-  costmap_obstacles_behind_robot_dist: 0.8
+  # New body extends 0.8 m behind base_link; retain nearby rear-corner obstacles.
+  costmap_obstacles_behind_robot_dist: 1.4
   obstacle_poses_affected: 15
 
   dynamic_obstacle_inflation_dist: 0.6

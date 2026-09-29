@@ -42,6 +42,13 @@ Toolbars:
 Visualization Manager:
   Class: ""
   Displays:
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /vehicle/outline
+      Name: Vehicle outline 1.60 x 0.80 m
+      Namespaces: {}
+      Queue Size: 2
+      Value: true
     - Class: rviz/Marker
       Enabled: true
       Marker Topic: /visualizer/path
